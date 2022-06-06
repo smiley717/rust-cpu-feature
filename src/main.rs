@@ -6,9 +6,21 @@ fn main() {
 }
 
 fn get_sysinfo() {
-    let system = System::new();
-    let ram = system.free_memory();
-    println!("System has {ram}KB total memory");
+    if System::IS_SUPPORTED {
+        let mut system = System::new_all();
+        system.refresh_all();
+        let ram = system.free_memory();
+        let cores = system.cpus();
+        let num_cores = cores.len();
+        println!("System has {ram}KB total memory");
+        println!("System has {num_cores} cores");
+
+        if let Some(cpu) = cores.first() {
+            println!("System core 1: {:?} ", cpu);
+        }
+    } else {
+        println!("System is not supported, skipping memory checks")
+    }
 }
 
 fn get_basic_info_using_cupid() {
