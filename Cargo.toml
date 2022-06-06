@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 cupid = "0.6.1"
+sysinfo = "0.24.1"

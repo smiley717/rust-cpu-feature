@@ -1,5 +1,14 @@
+use sysinfo::{System, SystemExt};
+
 fn main() {
     get_basic_info_using_cupid();
+    get_sysinfo();
+}
+
+fn get_sysinfo() {
+    let system = System::new();
+    let ram = system.free_memory();
+    println!("System has {ram}KB total memory");
 }
 
 fn get_basic_info_using_cupid() {
